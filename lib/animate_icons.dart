@@ -2,49 +2,53 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class AnimateIcons extends StatefulWidget {
-  const AnimateIcons({
-    /// The IconData that will be visible before animation Starts
-    required this.startIcon,
+  const AnimateIcons(
+      {
 
-    /// The IconData that will be visible after animation ends
-    required this.endIcon,
+      /// The IconData that will be visible before animation Starts
+      required this.startIcon,
 
-    /// The callback on startIcon Press
-    /// It should return a bool
-    /// If true is returned it'll animate to the end icon
-    /// if false is returned it'll not animate to the end icons
-    required this.onStartIconPress,
+      /// The IconData that will be visible after animation ends
+      required this.endIcon,
 
-    /// The callback on endIcon Press
-    /// /// It should return a bool
-    /// If true is returned it'll animate to the end icon
-    /// if false is returned it'll not animate to the end icons
-    required this.onEndIconPress,
+      /// The callback on startIcon Press
+      /// It should return a bool
+      /// If true is returned it'll animate to the end icon
+      /// if false is returned it'll not animate to the end icons
+      required this.onStartIconPress,
 
-    /// The size of the icon that are to be shown.
-    this.size,
+      /// The callback on endIcon Press
+      /// /// It should return a bool
+      /// If true is returned it'll animate to the end icon
+      /// if false is returned it'll not animate to the end icons
+      required this.onEndIconPress,
 
-    /// AnimateIcons controller
-    required this.controller,
+      /// The size of the icon that are to be shown.
+      this.size,
 
-    /// The color to be used for the [startIcon]
-    this.startIconColor,
+      /// AnimateIcons controller
+      required this.controller,
 
-    // The color to be used for the [endIcon]
-    this.endIconColor,
+      /// The color to be used for the [startIcon]
+      this.startIconColor,
 
-    /// The duration for which the animation runs
-    this.duration,
+      // The color to be used for the [endIcon]
+      this.endIconColor,
 
-    /// If the animation runs in the clockwise or anticlockwise direction
-    this.clockwise,
+      /// The duration for which the animation runs
+      this.duration,
 
-    /// This is the tooltip that will be used for the [startIcon]
-    this.startTooltip,
+      /// If the animation runs in the clockwise or anticlockwise direction
+      this.clockwise,
 
-    /// This is the tooltip that will be used for the [endIcon]
-    this.endTooltip,
-  });
+      /// This is the tooltip that will be used for the [startIcon]
+      this.startTooltip,
+
+      /// This is the tooltip that will be used for the [endIcon]
+      this.endTooltip,
+
+      // splashColor
+      this.splashColor});
   final IconData startIcon, endIcon;
   final bool Function() onStartIconPress, onEndIconPress;
   final Duration? duration;
@@ -53,13 +57,13 @@ class AnimateIcons extends StatefulWidget {
   final Color? startIconColor, endIconColor;
   final AnimateIconController controller;
   final String? startTooltip, endTooltip;
+  final Color? splashColor;
 
   @override
   _AnimateIconsState createState() => _AnimateIconsState();
 }
 
-class _AnimateIconsState extends State<AnimateIcons>
-    with SingleTickerProviderStateMixin {
+class _AnimateIconsState extends State<AnimateIcons> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
@@ -128,6 +132,7 @@ class _AnimateIconsState extends State<AnimateIcons>
         child: Opacity(
           opacity: y,
           child: IconButton(
+            splashColor: widget.splashColor ?? Colors.transparent,
             iconSize: widget.size ?? 24.0,
             color: widget.startIconColor ?? Theme.of(context).primaryColor,
             disabledColor: Colors.grey.shade500,
