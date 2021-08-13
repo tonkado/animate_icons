@@ -155,6 +155,7 @@ class _AnimateIconsState extends State<AnimateIcons> with SingleTickerProviderSt
         child: Opacity(
           opacity: x,
           child: IconButton(
+            splashColor: widget.splashColor ?? Colors.transparent,
             iconSize: widget.size ?? 24.0,
             color: widget.endIconColor ?? Theme.of(context).primaryColor,
             disabledColor: Colors.grey.shade500,
